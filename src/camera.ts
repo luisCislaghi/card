@@ -8,11 +8,11 @@ function getCamera(renderer: THREE.WebGLRenderer) {
     1,
     100
   );
-  camera.position.set(-8, 13, -8);
+  camera.position.set(2, 2, 2);
   camera.rotation.y = Math.PI / 2;
 
   const controls = new OrbitControls(camera, renderer.domElement);
-  controls.target.set(5, 0, 5);
+  controls.target.set(4, 0, 4);
   controls.update();
   controls.enablePan = false;
   controls.enableDamping = true;

@@ -5,8 +5,8 @@ function drawTerain(scene: THREE.Scene) {
   // round honeycomb with variable radius, size
   // const perlinNoise = noise2DOctaves(10, 10);
   // console.log(perlinNoise);
-  const HEX_RADIUS = 0.5;
-  const HEX_HEIGHT = 0.1;
+  const HEX_RADIUS = 0.2;
+  const HEX_HEIGHT = 0.04;
   const HEX_SEGMENTS = 6;
   const HEX_GEOMETRY = new THREE.CylinderGeometry(
     HEX_RADIUS,
@@ -45,28 +45,89 @@ function drawTerain(scene: THREE.Scene) {
   scene.add(group);
 
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load("./images/uv.png");
-  // const texture = textureLoader.load(
-  //   "./images/textures/sand/GroundSand005_COL_1K.jpg"
-  // );
+
+  const texture = textureLoader.load(
+    "./images/textures/sand/GroundSand005_COL_1K.jpg"
+  );
+  const aoMap = textureLoader.load(
+    "./images/textures/sand/GroundSand005_AO_1K.jpg"
+  );
+  const normalMap = textureLoader.load(
+    "./images/textures/sand/GroundSand005_NRM_1K.jpg"
+  );
+  const bumpMap = textureLoader.load(
+    "./images/textures/sand/GroundSand005_BUMP_1K.jpg"
+  );
+  const glossMap = textureLoader.load(
+    "./images/textures/sand/GroundSand005_GLOSS_1K.jpg"
+  );
+  texture.colorSpace = THREE.SRGBColorSpace;
   texture.wrapS = THREE.RepeatWrapping;
   texture.wrapT = THREE.RepeatWrapping;
-  // texture.magFilter = THREE.NearestFilter;
-  // texture.colorSpace = THREE.SRGBColorSpace;
-  console.log(texture);
-  let material = new THREE.MeshStandardMaterial({
-    map: texture,
-  });
-  // let material = new THREE.MeshPhysicalMaterial({
-  //   metalness: 0.0,
-  //   roughness: 0.3,
-  //   clearcoat: 1.0,
-  //   normalMap: texture,
+  aoMap.colorSpace = THREE.SRGBColorSpace;
+  aoMap.wrapS = THREE.RepeatWrapping;
+  aoMap.wrapT = THREE.RepeatWrapping;
+  normalMap.colorSpace = THREE.SRGBColorSpace;
+  normalMap.wrapS = THREE.RepeatWrapping;
+  normalMap.wrapT = THREE.RepeatWrapping;
+  bumpMap.colorSpace = THREE.SRGBColorSpace;
+  bumpMap.wrapS = THREE.RepeatWrapping;
+  bumpMap.wrapT = THREE.RepeatWrapping;
+  glossMap.colorSpace = THREE.SRGBColorSpace;
+  glossMap.wrapS = THREE.RepeatWrapping;
+  glossMap.wrapT = THREE.RepeatWrapping;
 
-  //   // clearcoatNormalMap: clearcoatNormalMap,
-  //   //// y scale is negated to compensate for normal map handedness.
-  //   // clearcoatNormalScale: new THREE.Vector2(2.0, -2.0),
+  let material = new THREE.MeshPhysicalMaterial({
+    // metalness: 0.2,
+    // roughness: 0.5,
+    map: texture,
+    normalMap: normalMap,
+    aoMap: aoMap,
+    aoMapIntensity: 1,
+    bumpMap: bumpMap,
+    bumpScale: 1,
+    clearcoatMap: glossMap,
+    // clearcoat: 0.1,
+  });
+
+  //
+  //
+  // TESTE CARBON TEXTURE
+  //
+  //
+
+  // const clearcoatNormalMap = textureLoader.load("./images/textures/normal.png");
+
+  // const diffuse = textureLoader.load("./images/textures/carbon/Carbon.png");
+  // diffuse.colorSpace = THREE.SRGBColorSpace;
+  // diffuse.wrapS = THREE.RepeatWrapping;
+  // diffuse.wrapT = THREE.RepeatWrapping;
+  // diffuse.repeat.x = 10;
+  // diffuse.repeat.y = 10;
+
+  // const normalMap = textureLoader.load(
+  //   "./images/textures/carbon/Carbon_Normal.png"
+  // );
+  // normalMap.wrapS = THREE.RepeatWrapping;
+  // normalMap.wrapT = THREE.RepeatWrapping;
+  // normalMap.repeat.x = 10;
+  // normalMap.repeat.y = 10;
+
+  // const material = new THREE.MeshPhysicalMaterial({
+  //   roughness: 0.5,
+  //   clearcoat: 1.0,
+  //   clearcoatRoughness: 0.1,
+  //   map: diffuse,
+  //   normalMap: normalMap,
+  //   clearcoatMap: clearcoatNormalMap,
+  //   clearcoatNormalScale: new THREE.Vector2(2.0, -2.0),
   // });
+
+  //
+  //
+  // TESTE CARBON TEXTURE
+  //
+  //
 
   // if is odd row, offset by half a hexagon
   // if is even row, offset by 0

@@ -10,8 +10,8 @@ let light2 = new THREE.PointLight(0xffffff, 1, 300);
 light2.add(
   new THREE.Mesh(sphere, new THREE.MeshBasicMaterial({ color: 0xfaaf00 }))
 );
-light1.position.set(0, 15, -20).normalize();
-light2.position.set(0, 15, 20).normalize();
+light1.position.set(3, 2, 3);
+light2.position.set(3, 2, 5);
 
 const ambientLight = new THREE.AmbientLight(0x404040, 40); // soft white light
 
