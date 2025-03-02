@@ -9,9 +9,9 @@ function drawCard(scene: THREE.Scene) {
   const material = getShaderMaterial();
 
   const cube = new THREE.Mesh(cardGeometry, material);
-  cube.position.x = 3;
+  // cube.position.x = 3;
+  // cube.position.z = 3;
   cube.position.y = 1;
-  cube.position.z = 3;
   scene.add(cube);
 }
 

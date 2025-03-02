@@ -1,6 +1,9 @@
 import * as THREE from "three";
 import { noise, perlinNoise } from "./noise";
 
+const BASE_X = -3;
+const BASE_Y = -3;
+
 function drawTerain(scene: THREE.Scene) {
   // round honeycomb with variable radius, size
   // const perlinNoise = noise2DOctaves(10, 10);
@@ -163,9 +166,10 @@ function drawTerain(scene: THREE.Scene) {
       let hex = new THREE.Mesh(HEX_GEOMETRY, material);
 
       hex.position.x =
-        j * (HEX_RADIUS * Math.sqrt(3)) +
-        (i % 2) * (HEX_RADIUS * (Math.sqrt(3) / 2));
-      hex.position.z = i * HEX_RADIUS * 1.5;
+        BASE_X +
+        (j * (HEX_RADIUS * Math.sqrt(3)) +
+          (i % 2) * (HEX_RADIUS * (Math.sqrt(3) / 2)));
+      hex.position.z = BASE_Y + i * HEX_RADIUS * 1.5;
       // set height based on perlin noise
 
       // console.log(noiseValue, " - ", perlinNoiseValue);

@@ -1,18 +1,21 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 
+const CAMERA_DISTANCE = 100;
+
 function getCamera(renderer: THREE.WebGLRenderer) {
-  const camera = new THREE.PerspectiveCamera(
-    40,
-    window.innerWidth / window.innerHeight,
-    1,
-    100
-  );
+  const canvas = renderer.domElement;
+  const size = new THREE.Vector2();
+  renderer.getSize(size);
+  const width = size.width;
+  const height = size.height;
+
+  const camera = new THREE.PerspectiveCamera(86, width / height, 0.005, 100);
   camera.position.set(2, 2, 2);
   camera.rotation.y = Math.PI / 2;
 
   const controls = new OrbitControls(camera, renderer.domElement);
-  controls.target.set(4, 0, 4);
+  controls.target.set(0, 0, 0);
   controls.update();
   controls.enablePan = false;
   controls.enableDamping = true;
@@ -20,4 +23,4 @@ function getCamera(renderer: THREE.WebGLRenderer) {
   return camera;
 }
 
-export { getCamera };
+export { getCamera, CAMERA_DISTANCE };

@@ -5,15 +5,23 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "build": "vite build",
+    "preview": "yarn build && vite preview --host"
   },
   "devDependencies": {
     "@types/three": "^0.167.1",
+    "@types/virtual-scroll": "^2.0.3",
+    "nodemon": "^3.1.7",
     "typescript": "^5.5.3",
-    "vite": "^5.4.0"
+    "vite": "^5.4.0",
+    "vite-raw-plugin": "^1.0.2"
   },
   "dependencies": {
-    "three": "^0.167.1"
-  }
+    "three": "^0.167.1",
+    "three-lens-distortion": "ycw/three-lens-distortion",
+    "three-msdf-text-utils": "^1.1.7",
+    "virtual-scroll": "^2.2.1",
+    "vite-plugin-glsl": "^1.3.0"
+  },
+  "packageManager": "yarn@1.22.19+sha1.4ba7fc5c6e704fce2066ecbfb0b0d8976fe62447"
 }
